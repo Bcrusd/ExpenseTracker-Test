@@ -18,7 +18,7 @@ struct AddView: View {
     
     var expenses: Expenses
     
-    let types = ["Personal", "Business"]
+    let types = ["Food", "Personal", "Business"]
         var body: some View {
         NavigationStack {
             Form {
@@ -43,7 +43,7 @@ struct AddView: View {
             .navigationTitle(Text("Add New Expense"))
             .toolbar {
                 Button("Save") {
-                    let item = ExpenseItems(name: name, type: type, amount: amount)
+                    let item = ExpenseItems(name: name, type: type, amount: amount, date: Date())
                     expenses.items.append(item)
                     
                     dismiss()
