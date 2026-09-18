@@ -54,4 +54,17 @@ struct iExpenseTests {
         #expect(Calendar.current.isDate(decoded[0].date, equalTo: Date(), toGranularity: .month))
     }
 
+    @Test func parseAmountPicksLargestPriceFromReceiptText() async throws {
+        let lines = ["Coffee 3.50", "Cake 4,25", "TOTAL 12.99", "Card ****1234"]
+        #expect(parseAmount(from: lines) == 12.99)
+    }
+
+    @Test func parseAmountHandlesCommaDecimalSeparator() async throws {
+        #expect(parseAmount(from: ["Total 7,80"]) == 7.80)
+    }
+
+    @Test func parseAmountReturnsNilWhenNoNumberPresent() async throws {
+        #expect(parseAmount(from: ["No prices here"]) == nil)
+    }
+
 }
