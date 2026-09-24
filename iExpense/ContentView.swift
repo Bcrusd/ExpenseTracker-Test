@@ -53,7 +53,7 @@ extension View {
 }
 
 @Observable
-class Expenses {
+class Expenses { 
     var items = [ExpenseItems]() {
         didSet {
             if let encoded = try? JSONEncoder().encode(items) {
